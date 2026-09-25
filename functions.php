@@ -35,9 +35,17 @@ function expertcare_enqueue_scripts() {
         null 
     );
 
-    // Theme Stylesheet
+    // Theme Stylesheet (Root Directory)
     wp_enqueue_style( 
         'expertcare-style', 
+        get_stylesheet_uri(), 
+        array(), 
+        '1.0.0' 
+    );
+
+    // Theme Stylesheet
+    wp_enqueue_style( 
+        'expertcare-main-style', 
         get_template_directory_uri() . '/assets/css/style.css', 
         array(), 
         '1.0.0' 
