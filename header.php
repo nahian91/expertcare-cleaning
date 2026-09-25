@@ -52,35 +52,50 @@
                     <?php endif; ?>
                 </div>
             </a>
-            <ul class="ifs-excl-nav-links" id="ifs-excl-navLinks">
-    <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo is_front_page() ? 'ifs-excl-active' : ''; ?>">Home</a></li>
-    <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>" class="<?php echo is_page( 'about' ) ? 'ifs-excl-active' : ''; ?>">About Us</a></li>
-    
-    <li class="ifs-excl-has-dropdown" id="ifs-excl-dropdownToggle">
-        <a href="<?php echo esc_url( home_url( '/our-services/' ) ); ?>" class="<?php echo is_page( 'services' ) ? 'ifs-excl-active' : ''; ?>">Services 
-            <svg class="ifs-excl-dropdown-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-        </a>
-        <div class="ifs-excl-dropdown">
-            <a href="<?php echo esc_url( home_url( '/services/end-of-tenancy-clean/' ) ); ?>">End of Tenancy</a>
-            <a href="<?php echo esc_url( home_url( '/services/regular-clean/' ) ); ?>">Regular Cleaning</a>
-            <a href="<?php echo esc_url( home_url( '/services/deep-clean/' ) ); ?>">Deep Clean</a>
-            <a href="<?php echo esc_url( home_url( '/services/commercial-cleaning/' ) ); ?>">Commercial Cleaning</a>
-            <a href="<?php echo esc_url( home_url( '/services/airbnb-cleaning/' ) ); ?>">Airbnb Cleaning</a>
-            <a href="<?php echo esc_url( home_url( '/services/oven-cleaning/' ) ); ?>">Oven Cleaning</a>
-            <a href="<?php echo esc_url( home_url( '/services/inside-window-cleaning/' ) ); ?>">Inside Windows</a>
-            <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>">All Services</a>
-        </div>
-    </li>
 
-    <li><a href="<?php echo esc_url( home_url( '/get-quote/' ) ); ?>" class="<?php echo is_page( 'get-quote' ) ? 'ifs-excl-active' : ''; ?>">Get Quote</a></li>
-    <li><a href="<?php echo esc_url( home_url( '/testimonials/' ) ); ?>" class="<?php echo is_page( 'testimonials' ) ? 'ifs-excl-active' : ''; ?>">Testimonials</a></li>
-    <li><a href="<?php echo esc_url( home_url( '/faqs/' ) ); ?>" class="<?php echo is_page( 'faqs' ) ? 'ifs-excl-active' : ''; ?>">FAQ</a></li>
-    <li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="<?php echo is_page( 'contact-us' ) ? 'ifs-excl-active' : ''; ?>">Contact Us</a></li>
-</ul>
-            <a href="#quote-section" class="ifs-excl-btn-primary">
+            <?php
+            // Identify if currently on Services main page or any single service sub-page
+            $is_services_active = is_page( 'services' ) || is_page( 'our-services' ) || is_page( array(
+                'end-of-tenancy-clean',
+                'regular-clean',
+                'deep-clean',
+                'commercial-cleaning',
+                'airbnb-cleaning',
+                'oven-cleaning',
+                'inside-window-cleaning'
+            ) );
+            ?>
+
+            <ul class="ifs-excl-nav-links" id="ifs-excl-navLinks">
+                <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo is_front_page() ? 'ifs-excl-active' : ''; ?>">Home</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>" class="<?php echo is_page( array( 'about', 'about-us' ) ) ? 'ifs-excl-active' : ''; ?>">About Us</a></li>
+                
+                <li class="ifs-excl-has-dropdown" id="ifs-excl-dropdownToggle">
+                    <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>" class="<?php echo $is_services_active ? 'ifs-excl-active' : ''; ?>">Services 
+                        <svg class="ifs-excl-dropdown-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                    </a>
+                    <div class="ifs-excl-dropdown">
+                        <a href="<?php echo esc_url( home_url( '/services/end-of-tenancy-clean/' ) ); ?>">End of Tenancy</a>
+                        <a href="<?php echo esc_url( home_url( '/services/regular-clean/' ) ); ?>">Regular Cleaning</a>
+                        <a href="<?php echo esc_url( home_url( '/services/deep-clean/' ) ); ?>">Deep Clean</a>
+                        <a href="<?php echo esc_url( home_url( '/services/commercial-cleaning/' ) ); ?>">Commercial Cleaning</a>
+                        <a href="<?php echo esc_url( home_url( '/services/airbnb-cleaning/' ) ); ?>">Airbnb Cleaning</a>
+                        <a href="<?php echo esc_url( home_url( '/services/oven-cleaning/' ) ); ?>">Oven Cleaning</a>
+                        <a href="<?php echo esc_url( home_url( '/services/inside-window-cleaning/' ) ); ?>">Inside Windows</a>
+                    </div>
+                </li>
+
+                <li><a href="<?php echo esc_url( home_url( '/get-quote/' ) ); ?>" class="<?php echo is_page( array( 'quote', 'get-quote' ) ) ? 'ifs-excl-active' : ''; ?>">Get Quote</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/testimonials/' ) ); ?>" class="<?php echo is_page( array( 'reviews', 'testimonials' ) ) ? 'ifs-excl-active' : ''; ?>">Testimonials</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/faqs/' ) ); ?>" class="<?php echo is_page( array( 'faq', 'faqs' ) ) ? 'ifs-excl-active' : ''; ?>">FAQ</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="<?php echo is_page( array( 'contact', 'contact-us' ) ) ? 'ifs-excl-active' : ''; ?>">Contact Us</a></li>
+            </ul>
+
+            <a href="<?php echo esc_url( home_url( '/get-quote/' ) ); ?>" class="ifs-excl-btn-primary">
                 Book a Clean 
                 <svg viewBox="0 0 24 24"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.42 12l-7.57-7.85-1.42 1.42L16.86 11H5v2z"/></svg>
             </a>
+            
             <div class="ifs-excl-menu-toggle" id="ifs-excl-menuToggle">
                 <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
             </div>
